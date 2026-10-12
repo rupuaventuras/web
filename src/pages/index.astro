@@ -3,137 +3,623 @@
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 
+// Obtener las expediciones desde Content Collections
 const expediciones = await getCollection("expediciones");
+
+// Número de WhatsApp de RÜPÜ
+const whatsappNumber = "5492612593975";
+
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+  "¡Hola! Quiero conocer las próximas expediciones de RÜPÜ."
+)}`;
+
+// Reseñas reales de participantes.
+// Agregá aquí testimonios con autorización para publicarlos.
+interface Resena {
+  nombre: string;
+  expedicion: string;
+  comentario: string;
+}
+
+const resenas: Resena[] = [];
 ---
 
-<Layout title="RÜPÜ Aventuras | Explorá nuevas montañas">
+<Layout
+  title="RÜPÜ Aventuras | Trekking y Expediciones en Mendoza"
+  description="Descubrí experiencias de trekking y expediciones de montaña en Mendoza. Explorá nuevos caminos con RÜPÜ Aventuras."
+>
 
-	<!-- HERO -->
-	<section
-		class="flex min-h-[75vh] flex-col items-center justify-center px-6 text-center"
-	>
+  <!-- ===================================== -->
+  <!-- HERO SECTION -->
+  <!-- ===================================== -->
 
-		<span
-		class="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-[#E08E5F]"
-		>
-		Mendoza · Argentina
-		</span>
+  <section
+    class="relative flex min-h-[calc(100svh-5rem)] items-center overflow-hidden"
+  >
 
-		<h1
-		class="max-w-4xl text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl"
-		>
-		La aventura comienza
-		<span class="text-[#E08E5F]">en la montaña.</span>
-		</h1>
+    <!-- Imagen de fondo -->
+    <img
+      src="/images/hero-montana.jpg"
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
 
-		<p class="mt-8 max-w-xl text-lg leading-8 text-slate-400">
-		Descubrí nuevos caminos, explorá paisajes únicos
-		y viví experiencias inolvidables con RÜPÜ Aventuras.
-		</p>
+    <!-- Degradado oscuro -->
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/60 to-slate-900/20"
+    ></div>
 
-		<a
-		href="#expediciones"
-		class="mt-10 rounded-full bg-[#E08E5F] px-8 py-4 text-sm font-semibold text-slate-950 transition-all hover:-translate-y-1 hover:bg-[#f0a779]"
-		>
-		Explorar expediciones
-		</a>
+    <!-- Degradado inferior -->
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"
+    ></div>
 
-	</section>
+    <!-- Contenido -->
+    <div
+      class="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 md:px-8"
+    >
+
+      <div class="max-w-3xl">
+
+        <!-- Etiqueta -->
+        <div class="mb-8 flex items-center gap-3">
+          <span class="h-px w-10 bg-[#E08E5F]"></span>
+
+          <span
+            class="text-xs font-semibold uppercase tracking-[0.3em] text-[#E08E5F]"
+          >
+            Mendoza · Argentina
+          </span>
+        </div>
+
+        <!-- Título -->
+        <h1
+          class="text-5xl font-bold leading-[1.08] tracking-tight text-white sm:text-6xl lg:text-7xl"
+        >
+          Hay caminos que
+          <span class="block text-[#E08E5F]">
+            dejan huella.
+          </span>
+        </h1>
+
+        <!-- Descripción -->
+        <p
+          class="mt-8 max-w-xl text-base leading-8 text-slate-200 md:text-lg"
+        >
+          La montaña nos invita a descubrir nuevos lugares,
+          superar nuestros límites y compartir experiencias
+          que van mucho más allá de llegar a la cumbre.
+        </p>
+
+        <!-- Botones -->
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+
+          <a
+            href="#expediciones"
+            class="inline-flex items-center justify-center gap-3 rounded-full bg-[#E08E5F] px-8 py-4 text-sm font-bold text-slate-950 transition-all duration-300 hover:-translate-y-1 hover:bg-[#f0a779]"
+          >
+            Explorar expediciones
+
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a
+            href="#nosotros"
+            class="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/5 px-8 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white/15"
+          >
+            Conocé RÜPÜ
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Indicador de scroll -->
+    <div
+      class="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 md:flex"
+      aria-hidden="true"
+    >
+      <span class="text-[10px] uppercase tracking-[0.3em] text-white/70">
+        Descubrí más
+      </span>
+
+      <span class="h-10 w-px bg-gradient-to-b from-[#E08E5F] to-transparent">
+      </span>
+    </div>
+
+  </section>
 
 
-    <!-- EXPEDICIONES -->
-	<section
-	id="expediciones"
-	class="scroll-mt-28 px-6 py-24"
-	>
-	<div class="mx-auto max-w-7xl">
+  <!-- ===================================== -->
+  <!-- EXPEDICIONES -->
+  <!-- ===================================== -->
 
-		<h2 class="text-3xl font-bold text-white">
-		Nuestras expediciones
-		</h2>
+  <section
+    id="expediciones"
+    class="scroll-mt-24 bg-slate-900 px-6 py-24 md:px-8 md:py-32"
+  >
 
-		<p class="mt-4 text-slate-400">
-		Descubrí nuestras próximas aventuras.
-		</p>
+    <div class="mx-auto max-w-7xl">
 
-		<div class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Encabezado -->
+      <div class="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
 
-		{expediciones.map((expedicion) => (
-			<article
-			class="overflow-hidden rounded-xl border border-white/10 bg-slate-800"
-			>
-			<Image
-				src={expedicion.data.image}
-				alt={expedicion.data.title}
-				class="h-56 w-full object-cover"
-			/>
+        <div class="max-w-2xl">
 
-			<div class="p-6">
+          <span
+            class="text-xs font-semibold uppercase tracking-[0.3em] text-[#E08E5F]"
+          >
+            Explorá con nosotros
+          </span>
 
-				<h3 class="text-xl font-bold text-white">
-				{expedicion.data.title}
-				</h3>
+          <h2
+            class="mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl"
+          >
+            Nuestras expediciones
+          </h2>
 
-				<p class="mt-3 text-sm text-slate-400">
-				{expedicion.data.description}
-				</p>
+          <p class="mt-5 text-base leading-8 text-slate-400">
+            Cada montaña es una nueva historia por vivir.
+            Encontrá tu próxima aventura y descubrí
+            todo lo que te espera en el camino.
+          </p>
 
-				<div class="mt-4 flex items-center justify-between">
-				<span class="text-sm text-slate-300">
-					{expedicion.data.duration}
-				</span>
+        </div>
 
-				<span class="text-sm capitalize text-[#E08E5F]">
-					{expedicion.data.difficulty}
-				</span>
-				</div>
+        <span class="text-sm text-slate-500">
+          {expediciones.length} expediciones disponibles
+        </span>
 
-				<p class="mt-5 text-xl font-semibold text-white">
-				${expedicion.data.price.toLocaleString("es-AR")}
-				</p>
+      </div>
 
-				<a
-					href={`/expediciones/${expedicion.id}/`}
-					class="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#E08E5F] px-6 py-3 text-sm font-semibold text-slate-950 transition-all hover:bg-[#f0a779]"
-				>
-					Ver expedición
-					<span aria-hidden="true">→</span>
-				</a>
+      <!-- Grid de expediciones -->
+      {
+        expediciones.length > 0 ? (
+          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
-			</div>
-			</article>
-		))}
+            {expediciones.map((expedicion) => (
 
-		</div>
-	</div>
-	</section>
+              <article
+                class="group overflow-hidden rounded-2xl border border-white/10 bg-slate-800/60 transition-all duration-300 hover:-translate-y-2 hover:border-[#E08E5F]/40 hover:shadow-2xl hover:shadow-black/20"
+              >
+
+                <!-- Imagen -->
+                <a
+                  href={`/expediciones/${expedicion.id}/`}
+                  class="relative block h-64 overflow-hidden"
+                  aria-label={`Ver ${expedicion.data.title}`}
+                >
+
+                  <Image
+                    src={expedicion.data.image}
+                    alt={expedicion.data.title}
+                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
+
+                  <!-- Degradado -->
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"
+                  ></div>
+
+                  <!-- Badge dificultad -->
+                  <span
+                    class="absolute left-5 top-5 rounded-full border border-white/20 bg-slate-950/75 px-4 py-2 text-xs font-medium capitalize text-white backdrop-blur-md"
+                  >
+                    Dificultad {expedicion.data.difficulty}
+                  </span>
+
+                </a>
+
+                <!-- Contenido -->
+                <div class="p-7">
+
+                  <h3
+                    class="text-xl font-bold text-white transition-colors group-hover:text-[#E08E5F]"
+                  >
+                    {expedicion.data.title}
+                  </h3>
+
+                  <p class="mt-4 line-clamp-3 min-h-[4.5rem] text-sm leading-6 text-slate-400">
+                    {expedicion.data.description}
+                  </p>
+
+                  <!-- Información -->
+                  <div
+                    class="mt-6 flex items-center gap-5 border-b border-white/10 pb-6"
+                  >
+
+                    <div class="flex items-center gap-2">
+
+                      <span class="text-[#E08E5F]" aria-hidden="true">
+                        ◷
+                      </span>
+
+                      <span class="text-sm text-slate-300">
+                        {expedicion.data.duration}
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                  <!-- Precio y botón -->
+                  <div class="mt-6 flex items-center justify-between gap-4">
+
+                    <div>
+
+                      <span class="text-xs text-slate-500">
+                        Por persona
+                      </span>
+
+                      <p class="mt-1 text-xl font-bold text-white">
+                        {
+                          expedicion.data.price === 0
+                            ? "Sin costo"
+                            : `$${expedicion.data.price.toLocaleString("es-AR")}`
+                        }
+                      </p>
+
+                    </div>
+
+                    <a
+                      href={`/expediciones/${expedicion.id}/`}
+                      class="inline-flex items-center gap-2 rounded-full bg-[#E08E5F] px-5 py-3 text-xs font-bold text-slate-950 transition-colors hover:bg-[#f0a779]"
+                    >
+                      Ver expedición
+                      <span aria-hidden="true">↗</span>
+                    </a>
+
+                  </div>
+
+                </div>
+
+              </article>
+
+            ))}
+
+          </div>
+        ) : (
+          <div class="rounded-2xl border border-white/10 bg-slate-800/50 p-12 text-center">
+            <h3 class="text-xl font-semibold text-white">
+              Próximamente nuevas aventuras
+            </h3>
+            <p class="mt-3 text-slate-400">
+              Estamos preparando las próximas expediciones.
+            </p>
+          </div>
+        )
+      }
+
+    </div>
+
+  </section>
 
 
-	<!-- SOBRE NOSOTROS -->
-	<section
-		id="nosotros"
-		class="scroll-mt-28 bg-slate-800/50 px-6 py-24"
-	>
-		<div class="mx-auto max-w-7xl">
-		<h2 class="text-3xl font-bold">Sobre nosotros</h2>
-		<p class="mt-4 text-slate-400">
-			Conocé al equipo detrás de RÜPÜ Aventuras.
-		</p>
-		</div>
-	</section>
+<!-- ===================================== -->
+<!-- QUIÉNES SOMOS -->
+<!-- ===================================== -->
 
-	<!-- RESEÑAS -->
-	<section
-		id="resenas"
-		class="scroll-mt-28 px-6 py-24"
-	>
-		<div class="mx-auto max-w-7xl">
-		<h2 class="text-3xl font-bold">Experiencias compartidas</h2>
-		<p class="mt-4 text-slate-400">
-			Lo que cuentan quienes caminaron con nosotros.
-		</p>
-		</div>
-	</section>
+<section
+  id="nosotros"
+  class="scroll-mt-24 bg-[#1E293B] px-6 py-24 md:px-8 md:py-32"
+>
+  <div class="mx-auto max-w-7xl">
+
+    <div class="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+
+      <!-- FOTO DEL EQUIPO -->
+      <div class="relative">
+
+        <div
+          class="relative min-h-[400px] overflow-hidden rounded-2xl bg-slate-900 md:min-h-[520px]"
+        >
+          <img
+            src="/images/equipo-rupu.jpg"
+            alt="Equipo de RÜPÜ Aventuras en la montaña"
+            loading="lazy"
+            class="absolute inset-0 h-full w-full object-cover"
+          />
+
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"
+          ></div>
+
+          <div class="absolute bottom-8 left-8">
+            <p class="text-3xl font-bold tracking-widest text-white">
+              RÜPÜ
+            </p>
+            <p class="mt-2 text-xs tracking-[0.3em] text-[#E08E5F]">
+              AVENTURAS
+            </p>
+          </div>
+        </div>
+
+        <!-- Detalle decorativo -->
+        <div
+          class="absolute -bottom-5 -right-4 -z-10 h-32 w-32 rounded-2xl border border-[#E08E5F]/50"
+          aria-hidden="true"
+        ></div>
+
+      </div>
+
+      <!-- CONTENIDO -->
+      <div>
+
+        <span
+          class="text-xs font-semibold uppercase tracking-[0.3em] text-[#E08E5F]"
+        >
+          Quiénes somos
+        </span>
+
+        <h2
+          class="mt-5 text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl"
+        >
+          Nuestra pasión es&nbsp
+          <span class="text-[#E08E5F]">
+            compartir el camino.
+          </span>
+        </h2>
+
+        <p class="mt-8 text-base leading-8 text-slate-300">
+          RÜPÜ Aventuras es un proyecto que nace en Mendoza,
+          de las ganas de salir a la montaña, descubrir
+          nuevos lugares y compartir esas experiencias
+          con otras personas.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-400">
+          Lo que comenzó como una pasión por caminar
+          y explorar nuestros paisajes se transformó
+          en una propuesta para acercar a más personas
+          al mundo del trekking y la montaña.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-400">
+          Creemos que una buena aventura no se mide
+          solamente por la altura de una cumbre,
+          sino también por los momentos compartidos,
+          los lugares descubiertos y las personas
+          que conocemos en el camino.
+        </p>
+
+        <!-- FRASE DESTACADA -->
+        <div class="mt-8 border-l-2 border-[#E08E5F] pl-5">
+
+          <p class="text-lg font-medium italic leading-8 text-white">
+            "Para nosotros, la montaña es mucho más
+            que llegar a la cumbre. Es disfrutar
+            de todo lo que sucede en el camino."
+          </p>
+
+        </div>
+
+        <a
+          href="https://www.instagram.com/rupuaventuras/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-10 inline-flex items-center gap-3 border-b border-[#E08E5F] pb-2 text-sm font-semibold text-[#E08E5F] transition-colors hover:text-white"
+        >
+          Conocé nuestras aventuras
+
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- FILOSOFÍA RÜPÜ -->
+    <div
+      class="mt-24 grid gap-8 border-t border-white/10 pt-12 md:grid-cols-3"
+    >
+
+      <div>
+        <h3 class="text-lg font-semibold text-white">
+          Explorar
+        </h3>
+
+        <p class="mt-3 text-sm leading-7 text-slate-400">
+          Descubrir nuevos senderos, paisajes
+          y rincones de nuestras montañas.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-white">
+          Compartir
+        </h3>
+
+        <p class="mt-3 text-sm leading-7 text-slate-400">
+          Disfrutar de la naturaleza en compañía,
+          creando experiencias y nuevos vínculos.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-white">
+          Respetar
+        </h3>
+
+        <p class="mt-3 text-sm leading-7 text-slate-400">
+          Vivir la montaña de manera responsable,
+          cuidando los lugares que recorremos.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+  <!-- ===================================== -->
+  <!-- RESEÑAS -->
+  <!-- ===================================== -->
+
+  <section
+    id="resenas"
+    class="scroll-mt-24 bg-slate-900 px-6 py-24 md:px-8 md:py-32"
+  >
+
+    <div class="mx-auto max-w-7xl">
+
+      <!-- Encabezado -->
+      <div class="mx-auto mb-14 max-w-2xl text-center">
+
+        <span
+          class="text-xs font-semibold uppercase tracking-[0.3em] text-[#E08E5F]"
+        >
+          Experiencias compartidas
+        </span>
+
+        <h2
+          class="mt-5 text-4xl font-bold tracking-tight text-white md:text-5xl"
+        >
+          Historias del camino
+        </h2>
+
+        <p class="mt-5 text-base leading-8 text-slate-400">
+          Cada salida nos deja recuerdos, nuevas amistades
+          y momentos que vale la pena compartir.
+        </p>
+
+      </div>
+
+      <!-- Testimonios -->
+      {
+        resenas.length > 0 ? (
+
+          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+            {resenas.map((resena) => (
+
+              <article
+                class="flex flex-col rounded-2xl border border-white/10 bg-slate-800/50 p-8"
+              >
+
+                <span
+                  class="text-5xl font-serif leading-none text-[#E08E5F]"
+                  aria-hidden="true"
+                >
+                  “
+                </span>
+
+                <blockquote class="mt-4 flex-1 text-base leading-8 text-slate-300">
+                  {resena.comentario}
+                </blockquote>
+
+                <div class="mt-8 border-t border-white/10 pt-6">
+
+                  <p class="font-semibold text-white">
+                    {resena.nombre}
+                  </p>
+
+                  <p class="mt-1 text-xs text-[#E08E5F]">
+                    {resena.expedicion}
+                  </p>
+
+                </div>
+
+              </article>
+
+            ))}
+
+          </div>
+
+        ) : (
+
+          <div
+            class="mx-auto max-w-2xl rounded-2xl border border-white/10 bg-slate-800/50 px-8 py-12 text-center"
+          >
+            <p class="text-lg text-slate-300">
+              Pronto vamos a compartir por acá las
+              experiencias de quienes se sumaron a nuestras aventuras.
+            </p>
+          </div>
+
+        )
+      }
+
+      <!-- Enlace a Instagram -->
+      <div class="mt-12 text-center">
+
+        <a
+          href="https://www.instagram.com/rupuaventuras/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 text-sm font-semibold text-[#E08E5F] transition-colors hover:text-white"
+        >
+          <Icon
+            name="simple-icons:instagram"
+            class="h-5 w-5"
+            aria-hidden="true"
+          />
+
+          Conocé nuestras aventuras en Instagram
+
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===================================== -->
+  <!-- CTA FINAL -->
+  <!-- ===================================== -->
+
+  <section
+    class="border-t border-white/10 bg-slate-950 px-6 py-24 text-center md:px-8"
+  >
+
+    <div class="mx-auto max-w-3xl">
+
+      <span
+        class="text-xs font-semibold uppercase tracking-[0.3em] text-[#E08E5F]"
+      >
+        Tu próxima aventura te espera
+      </span>
+
+      <h2
+        class="mt-6 text-4xl font-bold leading-tight text-white md:text-5xl"
+      >
+        ¿Nos encontramos en la montaña?
+      </h2>
+
+      <p class="mx-auto mt-6 max-w-xl text-base leading-8 text-slate-400">
+        Escribinos y te ayudamos a encontrar una salida
+        que se adapte a tus ganas de explorar.
+      </p>
+
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-9 inline-flex items-center justify-center gap-3 rounded-full bg-[#E08E5F] px-9 py-4 text-sm font-bold text-slate-950 transition-all duration-300 hover:-translate-y-1 hover:bg-[#f0a779]"
+      >
+        <Icon
+          name="simple-icons:whatsapp"
+          class="h-5 w-5"
+          aria-hidden="true"
+        />
+
+        Hablemos de tu próxima aventura
+      </a>
+
+    </div>
+
+  </section>
 
 </Layout>
