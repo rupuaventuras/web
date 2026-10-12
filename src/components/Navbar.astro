@@ -1,0 +1,169 @@
+
+---
+const links = [
+  { label: "Expediciones", href: "/#expediciones" },
+  { label: "Sobre Nosotros", href: "/#nosotros" },
+  { label: "Reseñas", href: "/#resenas" },
+];
+
+const whatsappNumber = "5492612593975";
+
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+  "¡Hola! Quiero consultar por las expediciones de RÜPÜ."
+)}`;
+---
+
+<header
+  class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl"
+>
+  <div
+    class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8"
+  >
+
+    <!-- LOGO -->
+    <a
+      href="/"
+      class="flex items-center gap-3"
+      aria-label="RÜPÜ Aventuras - Inicio"
+    >
+
+      <!-- Isotipo provisional -->
+      <div
+        class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#E08E5F]/10 text-[#E08E5F]"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="m2 19 7-12 4 6 3-4 6 10" />
+          <path d="m7 10 2-3 2 3" />
+        </svg>
+      </div>
+
+      <div class="flex flex-col leading-none">
+        <span class="text-xl font-bold tracking-[0.15em] text-white">
+          RÜPÜ
+        </span>
+        <span class="mt-1 text-[9px] tracking-[0.35em] text-slate-400">
+          AVENTURAS
+        </span>
+      </div>
+    </a>
+
+    <!-- NAVEGACIÓN ESCRITORIO -->
+    <nav
+      class="hidden items-center gap-8 lg:flex"
+      aria-label="Navegación principal"
+    >
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class="text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-[#E08E5F]"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- BOTÓN CONTACTO ESCRITORIO -->
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hidden items-center gap-2 rounded-full bg-[#E08E5F] px-6 py-2.5 text-sm font-semibold text-slate-950 transition-all duration-200 hover:bg-[#f0a779] lg:inline-flex"
+    >
+      Contacto
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M7 17 17 7" />
+        <path d="M7 7h10v10" />
+      </svg>
+    </a>
+
+    <!-- MENÚ MÓVIL -->
+    <details class="group relative lg:hidden">
+
+      <summary
+        class="flex cursor-pointer list-none items-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-slate-200 [&::-webkit-details-marker]:hidden"
+      >
+        <span class="text-sm">Menú</span>
+
+        <!-- Icono hamburguesa -->
+        <svg
+          class="h-5 w-5 group-open:hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+
+        <!-- Icono cerrar -->
+        <svg
+          class="hidden h-5 w-5 group-open:block"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </summary>
+
+      <nav
+        aria-label="Navegación móvil"
+        class="absolute right-0 top-14 w-64 rounded-xl border border-white/10 bg-slate-950 p-4 shadow-2xl"
+      >
+        <div class="flex flex-col gap-1">
+
+          {links.map((link) => (
+            <a
+              href={link.href}
+              class="rounded-lg px-4 py-3 text-sm text-slate-200 transition-colors hover:bg-white/5 hover:text-[#E08E5F]"
+            >
+              {link.label}
+            </a>
+          ))}
+
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-3 rounded-lg bg-[#E08E5F] px-4 py-3 text-center text-sm font-semibold text-slate-950"
+          >
+            Contacto
+          </a>
+
+        </div>
+      </nav>
+
+    </details>
+
+  </div>
+</header>

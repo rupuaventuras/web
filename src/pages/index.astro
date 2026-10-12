@@ -1,16 +1,80 @@
+
 ---
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="RÜPÜ Aventuras | Explorá nuevas montañas">
+
+  <!-- HERO -->
+  <section
+    class="flex min-h-[75vh] flex-col items-center justify-center px-6 text-center"
+  >
+
+    <span
+      class="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-[#E08E5F]"
+    >
+      Mendoza · Argentina
+    </span>
+
+    <h1
+      class="max-w-4xl text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl"
+    >
+      La aventura comienza
+      <span class="text-[#E08E5F]">en la montaña.</span>
+    </h1>
+
+    <p class="mt-8 max-w-xl text-lg leading-8 text-slate-400">
+      Descubrí nuevos caminos, explorá paisajes únicos
+      y viví experiencias inolvidables con RÜPÜ Aventuras.
+    </p>
+
+    <a
+      href="#expediciones"
+      class="mt-10 rounded-full bg-[#E08E5F] px-8 py-4 text-sm font-semibold text-slate-950 transition-all hover:-translate-y-1 hover:bg-[#f0a779]"
+    >
+      Explorar expediciones
+    </a>
+
+  </section>
+
+  <!-- EXPEDICIONES -->
+  <section
+    id="expediciones"
+    class="scroll-mt-28 px-6 py-24"
+  >
+    <div class="mx-auto max-w-7xl">
+      <h2 class="text-3xl font-bold">Nuestras expediciones</h2>
+      <p class="mt-4 text-slate-400">
+        Conocé nuestras próximas aventuras.
+      </p>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section
+    id="nosotros"
+    class="scroll-mt-28 bg-slate-800/50 px-6 py-24"
+  >
+    <div class="mx-auto max-w-7xl">
+      <h2 class="text-3xl font-bold">Sobre nosotros</h2>
+      <p class="mt-4 text-slate-400">
+        Conocé al equipo detrás de RÜPÜ Aventuras.
+      </p>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section
+    id="resenas"
+    class="scroll-mt-28 px-6 py-24"
+  >
+    <div class="mx-auto max-w-7xl">
+      <h2 class="text-3xl font-bold">Experiencias compartidas</h2>
+      <p class="mt-4 text-slate-400">
+        Lo que cuentan quienes caminaron con nosotros.
+      </p>
+    </div>
+  </section>
+
+</Layout>
+

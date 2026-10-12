@@ -1,0 +1,173 @@
+
+---
+const year = new Date().getFullYear();
+
+const whatsappNumber = "5492612593975";
+
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+  "¡Hola! Me gustaría recibir información sobre las expediciones."
+)}`;
+---
+
+<footer class="border-t border-white/10 bg-slate-950">
+
+  <div
+    class="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-3 md:px-8"
+  >
+
+    <!-- MARCA -->
+    <div>
+      <h2 class="text-2xl font-bold tracking-widest text-white">
+        RÜPÜ
+      </h2>
+
+      <p class="mt-1 text-xs tracking-[0.3em] text-[#E08E5F]">
+        AVENTURAS
+      </p>
+
+      <p class="mt-5 max-w-xs text-sm leading-7 text-slate-400">
+        Exploramos montañas, compartimos caminos
+        y creamos experiencias que dejan huella.
+      </p>
+    </div>
+
+    <!-- NAVEGACIÓN -->
+    <div>
+      <h3 class="mb-5 text-sm font-semibold uppercase tracking-widest text-white">
+        Explorar
+      </h3>
+
+      <nav class="flex flex-col items-start gap-3 text-sm text-slate-400">
+        <a
+          href="/#expediciones"
+          class="transition-colors hover:text-[#E08E5F]"
+        >
+          Expediciones
+        </a>
+
+        <a
+          href="/#nosotros"
+          class="transition-colors hover:text-[#E08E5F]"
+        >
+          Sobre Nosotros
+        </a>
+
+        <a
+          href="/#resenas"
+          class="transition-colors hover:text-[#E08E5F]"
+        >
+          Reseñas
+        </a>
+      </nav>
+    </div>
+
+    <!-- REDES Y CONTACTO -->
+    <div>
+      <h3 class="mb-5 text-sm font-semibold uppercase tracking-widest text-white">
+        Seguinos
+      </h3>
+
+      <p class="mb-5 text-sm text-slate-400">
+        Enterate de nuestras próximas aventuras.
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+
+        <!-- Instagram -->
+        <a
+          href="https://www.instagram.com/rupuaventuras/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram de RÜPÜ Aventuras"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-slate-300 transition-all hover:border-[#E08E5F] hover:text-[#E08E5F]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="2" y="2" width="20" height="20" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+
+        <!-- WhatsApp -->
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Contactar por WhatsApp"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-slate-300 transition-all hover:border-[#E08E5F] hover:text-[#E08E5F]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8v.5Z" />
+            <path d="M9 9c.5 2.5 2.5 4.5 5 5l1.5-1.5" />
+          </svg>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COPYRIGHT -->
+  <div class="border-t border-white/10">
+    <div
+      class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-6 text-center text-xs text-slate-500 md:flex-row md:justify-between md:px-8 md:text-left"
+    >
+      <span>
+        © {year} RÜPÜ Aventuras. Todos los derechos reservados.
+      </span>
+
+      <span>
+        Hecho en Mendoza, Argentina.
+      </span>
+    </div>
+  </div>
+
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a
+  href={whatsappUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Consultar por WhatsApp"
+  title="Consultanos por WhatsApp"
+  class="fixed bottom-6 right-6 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/30 transition-all duration-300 hover:scale-110 hover:bg-[#20bd5a] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+>
+
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="29"
+    height="29"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8v.5Z" />
+    <path d="M9 9c.5 2.5 2.5 4.5 5 5l1.5-1.5" />
+  </svg>
+
+</a>
