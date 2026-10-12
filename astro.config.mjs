@@ -6,7 +6,7 @@ import icon from "astro-icon";
 export default defineConfig({
   site: "https://rupuaventuras.github.io",
 
-  base: "/web-expediciones",
+  base: "/web",
 
   output: "static",
 

@@ -9,6 +9,8 @@ interface Props {
   description?: string;
 }
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 const {
   title = "RÜPÜ Aventuras | Expediciones y Trekking",
   description = "Descubrí experiencias de trekking y expediciones de montaña con RÜPÜ Aventuras en Mendoza, Argentina."
