@@ -1,15 +1,22 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
 
-import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
+import icon from "astro-icon";
 
-import icon from 'astro-icon';
-
-// https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()]
-  },
+  site: "https://rupuaventuras.github.io",
 
-  integrations: [icon()]
+  base: "/web-expediciones",
+
+  output: "static",
+
+  integrations: [
+    icon()
+  ],
+
+  vite: {
+    plugins: [
+      tailwindcss()
+    ]
+  }
 });

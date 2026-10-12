@@ -1,0 +1,54 @@
+
+name: Deploy RÜPÜ Aventuras
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+# Permisos para publicar en GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Evita despliegues simultáneos
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build Astro
+    runs-on: ubuntu-latest
+
+    steps:
+      # Descargar el repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      # Instalar dependencias, compilar Astro
+      # y subir los archivos generados
+      - name: Build and upload Astro
+        uses: withastro/action@v6
+        with:
+          path: .
+          node-version: 24
+          package-manager: npm
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # Publicar el sitio web
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v5

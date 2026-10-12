@@ -23,6 +23,7 @@ interface Resena {
   comentario: string;
 }
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const resenas: Resena[] = [];
 ---
 
@@ -41,7 +42,7 @@ const resenas: Resena[] = [];
 
     <!-- Imagen de fondo -->
     <img
-      src="/images/hero-montana.jpg"
+      src="${base}/images/hero-montana.jpg"
       alt=""
       class="absolute inset-0 h-full w-full object-cover object-center"
       loading="eager"
@@ -100,7 +101,7 @@ const resenas: Resena[] = [];
         <div class="mt-10 flex flex-wrap items-center gap-4">
 
           <a
-            href="#expediciones"
+            href="${base}/#expediciones"
             class="inline-flex items-center justify-center gap-3 rounded-full bg-[#E08E5F] px-8 py-4 text-sm font-bold text-slate-950 transition-all duration-300 hover:-translate-y-1 hover:bg-[#f0a779]"
           >
             Explorar expediciones
@@ -109,7 +110,7 @@ const resenas: Resena[] = [];
           </a>
 
           <a
-            href="#nosotros"
+            href="${base}/#nosotros"
             class="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/5 px-8 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white/15"
           >
             Conocé RÜPÜ
@@ -192,7 +193,7 @@ const resenas: Resena[] = [];
 
                 <!-- Imagen -->
                 <a
-                  href={`/expediciones/${expedicion.id}/`}
+                  href={`${base}/expediciones/${expedicion.id}/`}
                   class="relative block h-64 overflow-hidden"
                   aria-label={`Ver ${expedicion.data.title}`}
                 >
@@ -270,7 +271,7 @@ const resenas: Resena[] = [];
                     </div>
 
                     <a
-                      href={`/expediciones/${expedicion.id}/`}
+                      href={`${base}/expediciones/${expedicion.id}/`}
                       class="inline-flex items-center gap-2 rounded-full bg-[#E08E5F] px-5 py-3 text-xs font-bold text-slate-950 transition-colors hover:bg-[#f0a779]"
                     >
                       Ver expedición
@@ -322,7 +323,7 @@ const resenas: Resena[] = [];
           class="relative min-h-[400px] overflow-hidden rounded-2xl bg-slate-900 md:min-h-[520px]"
         >
           <img
-            src="/images/equipo-rupu.jpg"
+            src="${base}/images/equipo-rupu.jpg"
             alt="Equipo de RÜPÜ Aventuras en la montaña"
             loading="lazy"
             class="absolute inset-0 h-full w-full object-cover"

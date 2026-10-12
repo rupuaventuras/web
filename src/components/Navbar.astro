@@ -1,9 +1,9 @@
 
 ---
 const links = [
-  { label: "Expediciones", href: "/#expediciones" },
-  { label: "Sobre Nosotros", href: "/#nosotros" },
-  { label: "Reseñas", href: "/#resenas" },
+  { label: "Expediciones", href: "${base}/#expediciones" },
+  { label: "Sobre Nosotros", href: "${base}/#nosotros" },
+  { label: "Reseñas", href: "${base}/#resenas" },
 ];
 
 const whatsappNumber = "5492612593975";
@@ -22,7 +22,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
 
     <!-- LOGO -->
     <a
-      href="/"
+      href="${base}/"
       class="flex items-center gap-3"
       aria-label="RÜPÜ Aventuras - Inicio"
     >
