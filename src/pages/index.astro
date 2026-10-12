@@ -94,14 +94,11 @@ const expediciones = await getCollection("expediciones");
 				</p>
 
 				<a
-				href={`https://wa.me/5492612593975?text=${encodeURIComponent(
-					expedicion.data.whatsappMessage
-				)}`}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="mt-6 inline-block rounded-full bg-[#E08E5F] px-6 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-[#f0a779]"
+					href={`/expediciones/${expedicion.id}/`}
+					class="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#E08E5F] px-6 py-3 text-sm font-semibold text-slate-950 transition-all hover:bg-[#f0a779]"
 				>
-				Consultar expedición
+					Ver expedición
+					<span aria-hidden="true">→</span>
 				</a>
 
 			</div>

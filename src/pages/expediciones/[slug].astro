@@ -1,0 +1,325 @@
+
+---
+import Layout from "../../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import {
+  getCollection,
+  render,
+  type CollectionEntry,
+} from "astro:content";
+
+// Generar una página para cada expedición
+export async function getStaticPaths() {
+  const expediciones = await getCollection("expediciones");
+
+  return expediciones.map((expedicion) => ({
+    params: {
+      slug: expedicion.id,
+    },
+    props: {
+      expedicion,
+    },
+  }));
+}
+
+// Definir los tipos de las propiedades
+interface Props {
+  expedicion: CollectionEntry<"expediciones">;
+}
+
+const { expedicion } = Astro.props;
+
+// Datos de la expedición
+const {
+  title,
+  description,
+  price,
+  duration,
+  difficulty,
+  image,
+  includes,
+  notIncludes,
+} = expedicion.data;
+
+// Renderizar el contenido Markdown
+const { Content } = await render(expedicion);
+
+// WhatsApp de RÜPÜ Aventuras
+const whatsappNumber = "5492617248232";
+
+// Mensaje personalizado según la expedición
+const mensaje = `Hola, quiero consultar por la expedición "${title}".`;
+
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+  mensaje
+)}`;
+
+// Formatear el precio en pesos argentinos
+const precioFormateado = price.toLocaleString("es-AR");
+---
+
+<Layout
+  title={`${title} | RÜPÜ Aventuras`}
+  description={description}
+>
+
+  <!-- HERO / IMAGEN PRINCIPAL -->
+  <section class="relative h-[55vh] min-h-[380px] overflow-hidden md:h-[70vh]">
+
+    <Image
+      src={image}
+      alt={title}
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="eager"
+    />
+
+    <!-- Degradado oscuro sobre la imagen -->
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/45 to-slate-950/20"
+    ></div>
+
+    <!-- Contenido del Hero -->
+    <div class="absolute inset-0 flex items-end">
+
+      <div class="mx-auto w-full max-w-7xl px-6 pb-12 md:pb-16">
+
+        <a
+          href="/#expediciones"
+          class="mb-6 inline-flex items-center gap-2 text-sm text-slate-200 transition-colors hover:text-[#E08E5F]"
+        >
+          <span aria-hidden="true">←</span>
+          Volver a expediciones
+        </a>
+
+        <p
+          class="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#E08E5F]"
+        >
+          RÜPÜ AVENTURAS · MENDOZA
+        </p>
+
+        <h1
+          class="max-w-4xl text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl"
+        >
+          {title}
+        </h1>
+
+        <!-- BADGES -->
+        <div class="mt-6 flex flex-wrap gap-3">
+
+          <span
+            class="rounded-full border border-white/20 bg-slate-950/60 px-4 py-2 text-sm text-white backdrop-blur-sm"
+          >
+            ⏱ {duration}
+          </span>
+
+          <span
+            class="rounded-full border border-[#E08E5F]/40 bg-[#E08E5F]/15 px-4 py-2 text-sm capitalize text-[#f0b18c] backdrop-blur-sm"
+          >
+            ⛰ Dificultad {difficulty}
+          </span>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <section class="bg-slate-900 py-14 md:py-20">
+
+    <div
+      class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-3"
+    >
+
+      <!-- COLUMNA IZQUIERDA -->
+      <div class="space-y-12 lg:col-span-2">
+
+        <!-- DESCRIPCIÓN -->
+        <div>
+          <span
+            class="text-xs font-semibold uppercase tracking-widest text-[#E08E5F]"
+          >
+            La experiencia
+          </span>
+
+          <h2 class="mt-4 text-3xl font-bold text-white">
+            Descubrí esta aventura
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-slate-300">
+            {description}
+          </p>
+        </div>
+
+        <!-- ITINERARIO Y CONTENIDO MARKDOWN -->
+        <div class="border-t border-white/10 pt-10">
+
+          <h2 class="mb-7 text-3xl font-bold text-white">
+            Itinerario y detalles
+          </h2>
+
+          <div
+            class="space-y-5 leading-8 text-slate-300
+              [&_h2]:mb-4 [&_h2]:mt-10
+              [&_h2]:text-2xl [&_h2]:font-semibold
+              [&_h2]:text-white
+              [&_h3]:mb-3 [&_h3]:mt-6
+              [&_h3]:text-xl [&_h3]:font-semibold
+              [&_h3]:text-white
+              [&_p]:my-4
+              [&_ul]:my-4 [&_ul]:list-disc
+              [&_ul]:space-y-2 [&_ul]:pl-6
+              [&_ol]:my-4 [&_ol]:list-decimal
+              [&_ol]:space-y-2 [&_ol]:pl-6
+              [&_strong]:text-white
+              [&_a]:text-[#E08E5F]"
+          >
+            <Content />
+          </div>
+
+        </div>
+
+        <!-- SERVICIOS -->
+        <div class="border-t border-white/10 pt-10">
+
+          <h2 class="mb-8 text-3xl font-bold text-white">
+            ¿Qué incluye la expedición?
+          </h2>
+
+          <div class="grid gap-8 sm:grid-cols-2">
+
+            <!-- INCLUIDOS -->
+            <div class="rounded-2xl bg-slate-800/60 p-6">
+
+              <h3 class="mb-6 text-lg font-semibold text-white">
+                Servicios incluidos
+              </h3>
+
+              <ul class="space-y-4">
+                {includes.map((item) => (
+                  <li class="flex items-start gap-3">
+
+                    <span
+                      class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500/15 text-sm font-bold text-emerald-400"
+                      aria-hidden="true"
+                    >
+                      ✓
+                    </span>
+
+                    <span class="text-sm leading-6 text-slate-300">
+                      {item}
+                    </span>
+
+                  </li>
+                ))}
+              </ul>
+
+            </div>
+
+            <!-- NO INCLUIDOS -->
+            <div class="rounded-2xl bg-slate-800/60 p-6">
+
+              <h3 class="mb-6 text-lg font-semibold text-white">
+                No incluidos
+              </h3>
+
+              <ul class="space-y-4">
+                {notIncludes.map((item) => (
+                  <li class="flex items-start gap-3">
+
+                    <span
+                      class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-700 text-sm text-slate-400"
+                      aria-hidden="true"
+                    >
+                      ×
+                    </span>
+
+                    <span class="text-sm leading-6 text-slate-300">
+                      {item}
+                    </span>
+
+                  </li>
+                ))}
+              </ul>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMNA DERECHA / RESERVA -->
+      <aside class="lg:col-span-1">
+
+        <div
+          class="rounded-2xl border border-white/10 bg-slate-800 p-7 shadow-2xl lg:sticky lg:top-28"
+        >
+
+          <p class="text-sm text-slate-400">
+            Valor por persona
+          </p>
+
+          <p class="mt-2 text-4xl font-bold text-white">
+            ${precioFormateado}
+          </p>
+
+          <p class="mt-2 text-xs text-slate-400">
+            Precio expresado en pesos argentinos (ARS)
+          </p>
+
+          <div class="my-7 border-t border-white/10"></div>
+
+          <!-- RESUMEN -->
+          <div class="space-y-5">
+
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-sm text-slate-400">
+                Duración
+              </span>
+
+              <span class="text-right text-sm font-medium text-white">
+                {duration}
+              </span>
+            </div>
+
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-sm text-slate-400">
+                Dificultad
+              </span>
+
+              <span class="text-sm font-medium capitalize text-white">
+                {difficulty}
+              </span>
+            </div>
+
+          </div>
+
+          
+          <!-- BOTÓN DE RESERVA -->
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-8 flex w-full items-center justify-center gap-3 rounded-xl bg-[#25D366] px-5 py-4 text-base font-bold text-white shadow-lg shadow-green-950/30 transition-all duration-300 hover:-translate-y-1 hover:bg-[#20bd5a]"
+          >
+            <Icon
+              name="simple-icons:whatsapp"
+              class="h-6 w-6"
+              aria-hidden="true"
+            />
+
+            <span>Reservar por WhatsApp</span>
+          </a>
+
+
+          <p class="mt-4 text-center text-xs leading-5 text-slate-400">
+            Consultanos por disponibilidad y próximas fechas.
+          </p>
+
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</Layout>

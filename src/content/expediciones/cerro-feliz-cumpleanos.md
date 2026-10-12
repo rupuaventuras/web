@@ -6,9 +6,9 @@ description: "Descubrí los paisajes de Cacheuta en una experiencia de trekking 
 
 price: 20000
 
-duration: "4 horas aproximadamente"
+duration: "6 horas aproximadamente"
 
-difficulty: "baja"
+difficulty: "media"
 
 image: "./cerro-feliz-cumpleanos.jpg"
 
@@ -38,8 +38,8 @@ una experiencia de trekking en grupo.
 ## Información del recorrido
 
 - **Ubicación:** Cacheuta, Mendoza.
-- **Duración estimada:** 4 horas.
-- **Dificultad:** Baja.
+- **Duración estimada:** 6 horas.
+- **Dificultad:** media.
 - **Desnivel positivo:** 420 metros aproximadamente.
 - **Modalidad:** Trekking guiado.
 
@@ -59,6 +59,39 @@ Para disfrutar de la experiencia recomendamos llevar:
 - Agua suficiente para la jornada.
 - Protector solar y lentes de sol.
 - Comida de marcha.
+
+
+## Itinerario de la expedición
+
+### 1. Encuentro y preparación
+
+Nos encontramos en el punto de inicio del sendero,
+donde realizamos una breve charla de seguridad,
+revisamos el equipo y nos preparamos para comenzar.
+
+### 2. Inicio del trekking
+
+Comenzamos el ascenso por senderos de montaña,
+disfrutando del paisaje característico de Cacheuta.
+
+Durante el recorrido realizamos paradas para
+descansar, hidratarnos y conocer el entorno.
+
+### 3. Llegada a la cumbre
+
+Alcanzamos nuestro objetivo y disfrutamos de
+las vistas panorámicas.
+
+Realizamos una pausa para descansar,
+sacar fotografías y compartir algo para comer.
+
+### 4. Descenso y regreso
+
+Emprendemos el regreso por el sendero previsto,
+finalizando la actividad en el punto de encuentro.
+
+**Duración total estimada:** 6 horas.
+
 
 ## Viví la experiencia con RÜPÜ
 
